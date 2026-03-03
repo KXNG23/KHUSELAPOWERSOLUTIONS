@@ -7,18 +7,19 @@ export const About = () => {
   return (
     <div className="flex flex-col">
       {/* Header */}
-      <section className="bg-kps-dark py-20 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">About Khusela Power Solutions</h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Bringing the power to you with safety, reliability, and technical excellence.
+      <section className="bg-kps-orange py-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-white/5 -skew-y-6 origin-top-left" />
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-8">About KPS</h1>
+          <p className="text-white/90 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+            Leading the way in electrical excellence and innovative power solutions across South Africa.
           </p>
         </div>
       </section>
 
       {/* About Section */}
       <section className="section-padding overflow-hidden bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -26,29 +27,24 @@ export const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <img 
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000" 
-                alt="Technician"
-                className="rounded-2xl shadow-lg w-full h-64 sm:h-80 object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=1000" 
-                alt="Electrical Box"
-                className="rounded-2xl shadow-lg w-full h-64 sm:h-80 object-cover sm:mt-12"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            
-            {/* Refined Years Experience Callout */}
-            <div className="absolute -bottom-8 -right-4 sm:-right-8 bg-white dark:bg-slate-800 p-1 rounded-3xl shadow-2xl z-10">
-              <div className="bg-kps-orange p-6 sm:p-8 rounded-[22px] text-white flex flex-col items-center text-center border-4 border-white dark:border-slate-800">
-                <Award className="w-8 h-8 mb-2 opacity-80" />
-                <p className="text-4xl sm:text-5xl font-black mb-1">15+</p>
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] leading-tight">
-                  Years of<br />Excellence
-                </p>
+            <div className="relative flex items-center justify-center">
+              <div className="aspect-square rounded-full bg-kps-orange flex items-center justify-center p-16 shadow-2xl border-8 border-white dark:border-slate-800 animate-pulse-slow">
+                <div className="text-center">
+                  <Zap className="w-32 h-32 text-white mx-auto mb-4 fill-white" />
+                  <span className="text-7xl font-black text-white tracking-tighter">KPS</span>
+                  <p className="text-xs text-white/80 font-bold uppercase tracking-[0.4em] mt-3">Khusela Power</p>
+                </div>
+              </div>
+              
+              {/* Refined Years Experience Callout */}
+              <div className="absolute -bottom-10 -right-4 sm:-right-10 bg-white dark:bg-slate-800 p-2 rounded-[2.5rem] shadow-2xl z-10">
+                <div className="bg-kps-blue p-8 sm:p-10 rounded-[2rem] text-white flex flex-col items-center text-center border-4 border-white dark:border-slate-800">
+                  <Award className="w-10 h-10 mb-3 text-kps-orange" />
+                  <p className="text-5xl sm:text-6xl font-black mb-2">15+</p>
+                  <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] leading-tight">
+                    Years of<br />Excellence
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -59,64 +55,62 @@ export const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-kps-blue font-bold text-sm uppercase tracking-widest mb-3">Our Story</h2>
-            <h3 className="text-4xl font-bold mb-6 dark:text-white">Bringing the Power to You</h3>
-            <p className="text-gray-600 dark:text-slate-400 mb-6 leading-relaxed">
+            <h2 className="text-kps-blue font-bold text-base uppercase tracking-widest mb-4">Our Story</h2>
+            <h3 className="text-4xl font-black mb-8 text-kps-blue dark:text-white">Bringing the Power to You</h3>
+            <p className="text-gray-600 dark:text-slate-400 mb-8 leading-relaxed text-lg md:text-xl">
               Khusela Power Solutions is a South African-based electrical services company delivering reliable, compliant, and cost-effective electrical and power solutions to residential, commercial, and industrial clients.
             </p>
-            <p className="text-gray-600 dark:text-slate-400 mb-8 leading-relaxed">
-              The name Khusela, meaning "to protect," reflects our core mission: protecting people, property, and operations through safe and dependable electrical systems. We are committed to safeguarding infrastructure, improving energy efficiency, and ensuring uninterrupted power.
+            <p className="text-gray-600 dark:text-slate-400 mb-10 leading-relaxed text-lg md:text-xl">
+              The name Khusela, meaning "to protect," reflects our core mission: protecting people, property, and operations through safe and dependable electrical systems.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-10">
-              <Link to="/contact" className="btn-primary">Get a Quote</Link>
-              <Link to="/profile" className="btn-secondary flex items-center gap-2">
-                <FileText className="w-4 h-4" />
+            <div className="flex flex-wrap gap-6 mb-12">
+              <Link to="/contact" className="btn-primary px-10 py-4 text-lg">Get a Quote</Link>
+              <Link to="/profile" className="px-10 py-4 border-2 border-kps-orange text-kps-orange rounded-xl font-bold text-lg hover:bg-kps-orange hover:text-white transition-all flex items-center gap-3">
+                <FileText className="w-6 h-6" />
                 View Company Profile
               </Link>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
-              <div className="bg-gray-50 dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700">
-                <h4 className="font-bold text-kps-blue dark:text-kps-orange mb-2 flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5" /> Our Vision
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-slate-400">To be a trusted leader in electrical and power solutions in Gauteng and beyond, known for technical excellence, reliability, and innovation.</p>
-              </div>
-              <div className="bg-gray-50 dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700">
-                <h4 className="font-bold text-kps-blue dark:text-kps-orange mb-2 flex items-center gap-2">
-                  <Zap className="w-5 h-5" /> Our Mission
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-slate-400">To provide safe, efficient, and future-ready electrical solutions that protect assets, reduce downtime, and support sustainable growth.</p>
-              </div>
-            </div>
-
-            <div className="space-y-4 mb-10">
-              <h4 className="font-bold text-lg mb-4 dark:text-white">Our Core Values</h4>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {VALUES.map((value, i) => (
-                  <motion.div 
-                    key={i} 
-                    whileHover={{ x: 5 }}
-                    className="flex items-start gap-3"
-                  >
-                    <CheckCircle2 className="text-kps-orange w-5 h-5 mt-0.5 shrink-0" />
-                    <div>
-                      <p className="font-bold text-sm text-gray-800 dark:text-slate-200">{value.title}</p>
-                      <p className="text-xs text-gray-500 dark:text-slate-500">{value.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Mission & Vision - New Section */}
+      <section className="section-padding bg-kps-orange text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUp}
+              className="bg-white/10 p-12 rounded-[3rem] backdrop-blur-sm border border-white/20"
+            >
+              <h3 className="text-4xl font-black text-white mb-6">Our Mission</h3>
+              <p className="text-xl leading-relaxed text-white/90">
+                To provide superior electrical and power solutions that exceed client expectations through innovation, safety, and unmatched workmanship. We aim to be the most trusted partner for all power needs in South Africa.
+              </p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUp}
+              className="bg-kps-blue p-12 rounded-[3rem] shadow-2xl border border-white/10"
+            >
+              <h3 className="text-4xl font-black text-white mb-6">Our Vision</h3>
+              <p className="text-xl leading-relaxed text-white/90">
+                To lead the electrical services industry by setting the standard for quality and reliability, while empowering communities and fostering sustainable energy solutions for a brighter future.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Founder Section */}
-      <section className="section-padding bg-kps-dark text-white">
+      <section className="section-padding bg-gray-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -124,15 +118,15 @@ export const About = () => {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1"
             >
-              <h2 className="text-kps-orange font-bold text-sm uppercase tracking-widest mb-3">Leadership</h2>
-              <h3 className="text-4xl font-bold mb-6">Meet Our Founder</h3>
-              <div className="w-20 h-1 bg-kps-orange mb-8 rounded-full" />
-              <p className="text-xl font-bold text-white mb-2">Mr C PHILANE</p>
-              <p className="text-kps-orange font-medium mb-6">Founder & Managing Director</p>
-              <p className="text-gray-400 leading-relaxed mb-8">
+              <h2 className="text-kps-blue font-bold text-base uppercase tracking-widest mb-4">Leadership</h2>
+              <h3 className="text-4xl font-black mb-8 text-kps-blue dark:text-white">Meet Our Founder</h3>
+              <div className="w-24 h-2 bg-kps-orange mb-10 rounded-full" />
+              <p className="text-2xl font-black text-kps-blue dark:text-white mb-2">Mr C PHILANE</p>
+              <p className="text-kps-orange font-bold text-lg mb-8">Founder & Managing Director</p>
+              <p className="text-gray-600 dark:text-slate-400 leading-relaxed mb-8 text-lg md:text-xl">
                 With over 15 years of hands-on experience in the electrical engineering sector, Mr C PHILANE established Khusela Power Solutions with a vision to provide world-class electrical services that prioritize safety and technical integrity. 
               </p>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-600 dark:text-slate-400 leading-relaxed text-lg md:text-xl">
                 His leadership is defined by a commitment to excellence, ensuring that every project—whether a residential repair or a large-scale industrial installation—meets the highest standards of compliance and quality.
               </p>
             </motion.div>
@@ -143,16 +137,14 @@ export const About = () => {
               transition={{ duration: 0.8 }}
               className="order-1 lg:order-2 relative"
             >
-              <div className="aspect-square rounded-full border-8 border-kps-orange/20 p-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Mr C PHILANE"
-                  className="rounded-full w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="aspect-square rounded-[3rem] border-8 border-kps-orange/20 p-12 flex items-center justify-center bg-kps-orange/5 shadow-2xl">
+                <div className="text-center">
+                  <Zap className="w-32 h-32 text-kps-orange mx-auto mb-4 fill-kps-orange" />
+                  <span className="text-7xl font-black text-kps-blue dark:text-white tracking-tighter">KPS</span>
+                </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-kps-orange p-6 rounded-2xl shadow-2xl">
-                <Zap className="w-8 h-8 text-white" />
+              <div className="absolute -bottom-6 -left-6 bg-kps-blue p-8 rounded-3xl shadow-2xl">
+                <Award className="w-10 h-10 text-white" />
               </div>
             </motion.div>
           </div>
@@ -204,7 +196,7 @@ export const About = () => {
               className="relative"
             >
               <img 
-                src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=1000" 
+                src="/api/images/3" 
                 alt="Professional Team"
                 className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
                 referrerPolicy="no-referrer"

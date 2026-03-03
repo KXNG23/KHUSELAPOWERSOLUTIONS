@@ -2,15 +2,21 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-kps-blue: #1D63A7;
+  --color-kps-blue: #004E96;
   --color-kps-orange: #F28C28;
   --color-kps-dark: #0F172A;
   --color-kps-bg-dark: #020617;
 }
 
 @layer base {
+  html {
+    @apply text-[17px] md:text-[18px];
+  }
   body {
-    @apply font-sans text-kps-dark bg-white antialiased transition-colors duration-300;
+    @apply font-sans text-slate-700 dark:text-slate-300 leading-relaxed bg-white dark:bg-slate-950 antialiased transition-colors duration-300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-kps-blue dark:text-slate-100 font-bold tracking-tight;
   }
 }
 

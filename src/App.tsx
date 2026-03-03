@@ -27,7 +27,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Logo className="scale-150" />
+        <Logo className="scale-150" forceShowText={true} />
       </motion.div>
       <motion.div 
         initial={{ width: 0 }}

@@ -16,7 +16,7 @@ export const WhatsAppButton = () => {
       aria-label="Chat on WhatsApp"
     >
       <MessageCircle className="w-6 h-6 fill-white" />
-      <span className="absolute right-full mr-4 bg-white dark:bg-slate-800 text-kps-dark dark:text-white px-4 py-2 rounded-xl text-sm font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-gray-100 dark:border-slate-700">
+      <span className="absolute right-full mr-4 bg-white dark:bg-slate-800 text-kps-dark dark:text-white px-5 py-3 rounded-2xl text-base font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-gray-100 dark:border-slate-700">
         Chat on WhatsApp
       </span>
     </motion.a>

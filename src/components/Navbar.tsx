@@ -32,13 +32,13 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link 
               key={link.path}
               to={link.path} 
-              className={`text-sm font-medium transition-colors hover:text-kps-blue ${
-                location.pathname === link.path ? "text-kps-blue" : "text-gray-600 dark:text-slate-300"
+              className={`text-base font-bold transition-colors hover:text-kps-orange ${
+                location.pathname === link.path ? "text-kps-orange" : "text-kps-blue dark:text-slate-300"
               }`}
             >
               {link.name}
@@ -47,13 +47,13 @@ export const Navbar = () => {
           
           <button 
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
             aria-label="Toggle Dark Mode"
           >
-            {darkMode ? <Sun className="w-5 h-5 text-kps-orange" /> : <Moon className="w-5 h-5 text-kps-blue" />}
+            {darkMode ? <Sun className="w-6 h-6 text-kps-orange" /> : <Moon className="w-6 h-6 text-kps-blue" />}
           </button>
 
-          <Link to="/contact" className="btn-primary text-sm py-2 px-5">Get a Quote</Link>
+          <Link to="/contact" className="bg-kps-orange text-white px-8 py-3 rounded-xl font-bold text-base hover:bg-kps-orange/90 transition-all shadow-lg shadow-kps-orange/20">Get a Quote</Link>
         </div>
 
         {/* Mobile Menu Toggle */}
