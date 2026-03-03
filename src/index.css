@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-kps-blue: #1D63A7;
+  --color-kps-orange: #F28C28;
+  --color-kps-dark: #0F172A;
+  --color-kps-bg-dark: #020617;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-kps-dark bg-white antialiased transition-colors duration-300;
+  }
+}
+
+.dark body {
+  @apply text-slate-200 bg-kps-bg-dark;
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 transition-all duration-300;
+}
+
+.dark .glass-nav {
+  @apply bg-kps-bg-dark/80 border-slate-800;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-kps-blue text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-kps-orange text-white rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95;
+}
+
+.section-padding {
+  @apply py-20 px-6 md:px-12 lg:px-24;
+}
+
+/* Custom card styles for dark mode */
+.dark .bg-white {
+  @apply bg-slate-900 border-slate-800;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-slate-950;
+}
+
+.dark .text-gray-600, .dark .text-gray-500 {
+  @apply text-slate-400;
+}
+
+.dark .text-gray-700 {
+  @apply text-slate-300;
+}
+
+.dark .border-gray-100, .dark .border-gray-200 {
+  @apply border-slate-800;
+}
