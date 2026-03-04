@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ShieldCheck, Zap, CheckCircle2, FileText, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { VALUES, slideUp } from "../constants";
+import { WorkInProgress } from "../components/WorkInProgress";
 
 export const About = () => {
   return (
@@ -210,6 +211,8 @@ export const About = () => {
           </div>
         </div>
       </section>
+      {/* Work In Progress Gallery */}
+      <WorkInProgress />
     </div>
   );
 };

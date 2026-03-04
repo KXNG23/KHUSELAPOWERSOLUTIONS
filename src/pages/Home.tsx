@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FEATURES, SERVICES, slideUp, staggerContainer } from "../constants";
+import { WorkInProgress } from "../components/WorkInProgress";
 
 const HERO_TEXTS = [
   {
@@ -21,6 +22,13 @@ const HERO_TEXTS = [
 
 export const Home = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,36 +40,39 @@ export const Home = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section id="home" className="relative h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section ref={heroRef} id="home" className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <motion.div 
+          style={{ y }}
+          className="absolute inset-0 z-0"
+        >
           <img 
             src="/api/images/1" 
             alt="Electrical Work"
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="w-full h-full object-cover brightness-[0.35] scale-110"
             referrerPolicy="no-referrer"
           />
           {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-kps-dark/80 to-transparent z-1" />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-kps-dark/60 via-kps-dark/40 to-kps-dark/60 z-1" />
+        </motion.div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center">
           <AnimatePresence mode="wait">
             <motion.div 
               key={currentTextIndex}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 50 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-4xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-8">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-kps-orange opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-kps-orange"></span>
                 </span>
                 Trusted Power Experts
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 uppercase">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8 uppercase tracking-tight">
                 {HERO_TEXTS[currentTextIndex].heading.split('ELECTRICAL AND POWER').map((part, i, arr) => (
                   <span key={i}>
                     {part}
@@ -69,14 +80,14 @@ export const Home = () => {
                   </span>
                 ))}
               </h1>
-              <p className="text-lg text-gray-300 mb-10 max-w-lg">
+              <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed">
                 {HERO_TEXTS[currentTextIndex].subheading}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/contact" className="btn-secondary flex items-center justify-center gap-2 group">
-                  Request Service <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                <Link to="/contact" className="btn-secondary px-10 py-4 flex items-center justify-center gap-2 group text-lg shadow-xl shadow-kps-orange/20">
+                  Request Service <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link to="/services" className="px-6 py-3 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                <Link to="/services" className="px-10 py-4 border-2 border-white/30 text-white rounded-xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-lg backdrop-blur-sm">
                   Our Services
                 </Link>
               </div>
@@ -214,6 +225,9 @@ export const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Work In Progress Gallery */}
+      <WorkInProgress />
 
       {/* Quick About Preview */}
       <section className="section-padding bg-white dark:bg-slate-900">
