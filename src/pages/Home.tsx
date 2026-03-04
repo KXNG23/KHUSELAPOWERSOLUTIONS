@@ -4,18 +4,27 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FEATURES, SERVICES, slideUp, staggerContainer } from "../constants";
 
-const HERO_IMAGES = [
-  "/api/images/1",
-  "/api/images/2",
-  "/api/images/3"
+const HERO_TEXTS = [
+  {
+    heading: "LEADING ELECTRICAL AND POWER SOLUTIONS",
+    subheading: "Khusela Power Solutions provides top-tier electrical, handyman, and maintenance services for industrial, commercial, and residential projects."
+  },
+  {
+    heading: "EXPERT MAINTENANCE & FAULT FINDING",
+    subheading: "Proactive electrical maintenance and rapid fault finding to minimize downtime and ensure safety for your operations."
+  },
+  {
+    heading: "RELIABLE BACKUP POWER SOLUTIONS",
+    subheading: "Keep your business running during outages with our professional inverter, UPS, and generator installations."
+  }
 ];
 
 export const Home = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentTextIndex((prev) => (prev + 1) % HERO_TEXTS.length);
     }, 6000);
     return () => clearInterval(timer);
   }, []);
@@ -25,66 +34,64 @@ export const Home = () => {
       {/* Hero Section */}
       <section id="home" className="relative h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentImage}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <img 
-                src={HERO_IMAGES[currentImage]} 
-                alt="Electrical Work"
-                className="w-full h-full object-cover brightness-[0.4]"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
-          </AnimatePresence>
+          <img 
+            src="/api/images/1" 
+            alt="Electrical Work"
+            className="w-full h-full object-cover brightness-[0.4]"
+            referrerPolicy="no-referrer"
+          />
           {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-kps-dark/80 to-transparent z-1" />
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-2xl"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-kps-orange opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-kps-orange"></span>
-              </span>
-              Trusted Power Experts
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 uppercase">
-              LEADING <span className="text-kps-orange">ELECTRICAL AND POWER</span> SOLUTIONS
-            </h1>
-            <p className="text-lg text-gray-300 mb-10 max-w-lg">
-              Khusela Power Solutions provides top-tier electrical, handyman, and maintenance services for industrial, commercial, and residential projects.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="btn-secondary flex items-center justify-center gap-2 group">
-                Request Service <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link to="/services" className="px-6 py-3 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                Our Services
-              </Link>
-            </div>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={currentTextIndex}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 50 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-kps-orange opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-kps-orange"></span>
+                </span>
+                Trusted Power Experts
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 uppercase">
+                {HERO_TEXTS[currentTextIndex].heading.split('ELECTRICAL AND POWER').map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="text-kps-orange">ELECTRICAL AND POWER</span>}
+                  </span>
+                ))}
+              </h1>
+              <p className="text-lg text-gray-300 mb-10 max-w-lg">
+                {HERO_TEXTS[currentTextIndex].subheading}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact" className="btn-secondary flex items-center justify-center gap-2 group">
+                  Request Service <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link to="/services" className="px-6 py-3 border border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                  Our Services
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Carousel Indicators */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {HERO_IMAGES.map((_, idx) => (
+          {HERO_TEXTS.map((_, idx) => (
             <button
               key={idx}
-              onClick={() => setCurrentImage(idx)}
+              onClick={() => setCurrentTextIndex(idx)}
               className={`w-12 h-1 rounded-full transition-all ${
-                currentImage === idx ? "bg-kps-orange" : "bg-white/30"
+                currentTextIndex === idx ? "bg-kps-orange" : "bg-white/30"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
