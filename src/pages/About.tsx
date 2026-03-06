@@ -140,8 +140,8 @@ export const About = () => {
             >
               <div className="relative group">
                 <img 
-                  src="/api/images/5" 
-                  alt="Mr C PHILANE - Founder"
+                  src="/api/images/12" 
+                  alt="Mr CHAMANE PHILANE - Founder"
                   className="rounded-[3rem] shadow-2xl w-full h-[600px] object-cover border-8 border-white dark:border-slate-800"
                   referrerPolicy="no-referrer"
                   loading="lazy"
