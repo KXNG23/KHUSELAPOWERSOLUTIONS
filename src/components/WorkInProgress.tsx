@@ -3,10 +3,23 @@ import { slideUp } from "../constants";
 
 export const WorkInProgress = () => {
   const images = [
+    "/api/images/1",
     "/api/images/2",
     "/api/images/3",
     "/api/images/4",
-    "/api/images/5"
+    "/api/images/5",
+    "/api/images/6",
+    "/api/images/7",
+    "/api/images/8",
+    "/api/images/9",
+    "/api/images/10",
+    "/api/images/11",
+    "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=2069",
+    "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2070",
+    "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=2070",
+    "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=2070",
+    "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=2070",
+    "https://images.unsplash.com/photo-1530124560676-586cad3ad276?auto=format&fit=crop&q=80&w=2070"
   ];
 
   return (
@@ -35,13 +48,19 @@ export const WorkInProgress = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative overflow-hidden rounded-3xl shadow-lg aspect-[4/3]"
+              className="group relative overflow-hidden rounded-3xl shadow-lg aspect-[4/3] bg-gray-200 dark:bg-slate-800"
             >
               <img
                 src={src}
                 alt={`Work in progress ${idx + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  // Fallback to a themed placeholder if the specific image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.src = `https://picsum.photos/seed/kps${idx}/800/600`;
+                }}
               />
               <div className="absolute inset-0 bg-kps-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">

@@ -67,6 +67,11 @@ export const Services = () => {
                       alt={SERVICES[currentIndex].title}
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://picsum.photos/seed/kpsservice${currentIndex}/1200/800`;
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-kps-blue/60 to-transparent lg:bg-gradient-to-r" />
                   </div>
@@ -172,10 +177,15 @@ export const Services = () => {
             </div>
             <div className="relative">
               <img 
-                src="/api/images/1" 
+                src="/api/images/4" 
                 alt="Industrial Site"
                 className="rounded-[3rem] shadow-2xl w-full h-[500px] object-cover border-8 border-white/10"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://picsum.photos/seed/kpsindustrial/1200/800";
+                }}
               />
               <div className="absolute inset-0 bg-kps-orange/10 rounded-[3rem]" />
             </div>

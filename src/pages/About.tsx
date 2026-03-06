@@ -138,14 +138,24 @@ export const About = () => {
               transition={{ duration: 0.8 }}
               className="order-1 lg:order-2 relative"
             >
-              <div className="aspect-square rounded-[3rem] border-8 border-kps-orange/20 p-12 flex items-center justify-center bg-kps-orange/5 shadow-2xl">
-                <div className="text-center">
-                  <Zap className="w-32 h-32 text-kps-orange mx-auto mb-4 fill-kps-orange" />
-                  <span className="text-7xl font-black text-kps-blue dark:text-white tracking-tighter">KPS</span>
+              <div className="relative group">
+                <img 
+                  src="/api/images/5" 
+                  alt="Mr C PHILANE - Founder"
+                  className="rounded-[3rem] shadow-2xl w-full h-[600px] object-cover border-8 border-white dark:border-slate-800"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://picsum.photos/seed/kpsfounder/800/1000";
+                  }}
+                />
+                <div className="absolute -bottom-6 -left-6 bg-kps-blue p-8 rounded-3xl shadow-2xl border-4 border-white dark:border-slate-800">
+                  <Award className="w-10 h-10 text-white" />
                 </div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-kps-blue p-8 rounded-3xl shadow-2xl">
-                <Award className="w-10 h-10 text-white" />
+                <div className="absolute top-6 right-6 bg-kps-orange p-4 rounded-2xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Zap className="w-8 h-8 text-white fill-white" />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -197,10 +207,15 @@ export const About = () => {
               className="relative"
             >
               <img 
-                src="/api/images/3" 
+                src="/api/images/9" 
                 alt="Professional Team"
                 className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://picsum.photos/seed/kpsteam/1200/800";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-kps-blue/40 to-transparent rounded-3xl" />
               <div className="absolute bottom-10 left-10 right-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl">

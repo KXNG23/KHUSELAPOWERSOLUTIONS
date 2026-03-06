@@ -5,23 +5,7 @@ import { Link } from "react-router-dom";
 import { FEATURES, SERVICES, slideUp, staggerContainer } from "../constants";
 import { WorkInProgress } from "../components/WorkInProgress";
 
-const HERO_TEXTS = [
-  {
-    heading: "LEADING ELECTRICAL AND POWER SOLUTIONS",
-    subheading: "Khusela Power Solutions provides top-tier electrical, handyman, and maintenance services for industrial, commercial, and residential projects."
-  },
-  {
-    heading: "EXPERT MAINTENANCE & FAULT FINDING",
-    subheading: "Proactive electrical maintenance and rapid fault finding to minimize downtime and ensure safety for your operations."
-  },
-  {
-    heading: "RELIABLE BACKUP POWER SOLUTIONS",
-    subheading: "Keep your business running during outages with our professional inverter, UPS, and generator installations."
-  }
-];
-
 export const Home = () => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -30,83 +14,57 @@ export const Home = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % HERO_TEXTS.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section ref={heroRef} id="home" className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} id="home" className="relative h-[85vh] flex items-center justify-center overflow-hidden group">
         <motion.div 
           style={{ y }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-110"
         >
           <img 
-            src="/api/images/1" 
+            src="/api/images/11" 
             alt="Electrical Work"
-            className="w-full h-full object-cover brightness-[0.35] scale-110"
+            className="w-full h-full object-cover brightness-[0.35]"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = `https://picsum.photos/seed/kpshero/1920/1080`;
+            }}
           />
           {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-kps-dark/60 via-kps-dark/40 to-kps-dark/60 z-1" />
         </motion.div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center">
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={currentTextIndex}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="max-w-4xl"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-8">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-kps-orange opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-kps-orange"></span>
-                </span>
-                Trusted Power Experts
-              </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8 uppercase tracking-tight">
-                {HERO_TEXTS[currentTextIndex].heading.split('ELECTRICAL AND POWER').map((part, i, arr) => (
-                  <span key={i}>
-                    {part}
-                    {i < arr.length - 1 && <span className="text-kps-orange">ELECTRICAL AND POWER</span>}
-                  </span>
-                ))}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed">
-                {HERO_TEXTS[currentTextIndex].subheading}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                <Link to="/contact" className="btn-secondary px-10 py-4 flex items-center justify-center gap-2 group text-lg shadow-xl shadow-kps-orange/20">
-                  Request Service <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link to="/services" className="px-10 py-4 border-2 border-white/30 text-white rounded-xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-lg backdrop-blur-sm">
-                  Our Services
-                </Link>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Carousel Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {HERO_TEXTS.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentTextIndex(idx)}
-              className={`w-12 h-1 rounded-full transition-all ${
-                currentTextIndex === idx ? "bg-kps-orange" : "bg-white/30"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+          <motion.div 
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="max-w-4xl"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-kps-orange/20 border border-kps-orange/30 text-kps-orange text-xs font-bold uppercase tracking-wider mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-kps-orange opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-kps-orange"></span>
+              </span>
+              Trusted Power Experts
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8 uppercase tracking-tight">
+              LEADING <span className="text-kps-orange">ELECTRICAL AND POWER</span> SOLUTIONS
+            </h1>
+            <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed">
+              Khusela Power Solutions provides top-tier electrical, handyman, and maintenance services for industrial, commercial, and residential projects.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+              <Link to="/contact" className="btn-secondary px-10 py-4 flex items-center justify-center gap-2 group text-lg shadow-xl shadow-kps-orange/20">
+                Request Service <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link to="/services" className="px-10 py-4 border-2 border-white/30 text-white rounded-xl font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-lg backdrop-blur-sm">
+                Our Services
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -217,9 +175,15 @@ export const Home = () => {
               className="relative"
             >
               <img 
-                src="/api/images/1" 
+                src="/api/images/10" 
                 alt="Quality Work"
                 className="rounded-[3rem] shadow-2xl border-8 border-white/10"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://picsum.photos/seed/kpsquality/1200/800";
+                }}
               />
             </motion.div>
           </div>
@@ -255,10 +219,15 @@ export const Home = () => {
             className="relative"
           >
             <img 
-              src="/api/images/2" 
+              src="/api/images/9" 
               alt="Technician"
               className="rounded-[3rem] shadow-2xl w-full h-[500px] object-cover"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://picsum.photos/seed/kpstech/1200/800";
+              }}
             />
           </motion.div>
         </div>

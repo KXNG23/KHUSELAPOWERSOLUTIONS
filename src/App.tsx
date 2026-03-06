@@ -57,6 +57,10 @@ const ScrollToTop = () => {
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
+  useEffect(() => {
+    document.title = "KPS - 2026";
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
